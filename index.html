@@ -8,16 +8,17 @@
         body {
             font-family: 'Courier New', monospace;
             text-align: center;
-            margin: 50px;
+            margin: 0;
+            padding: 0;
             background-color: black;
             color: #00ff00;
-            overflow: hidden;
+            overflow-x: hidden;
         }
         .container {
             background: rgba(0, 0, 0, 0.8);
             padding: 20px;
             max-width: 400px;
-            margin: auto;
+            margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 0 20px #00ff00;
         }
@@ -49,10 +50,18 @@
             margin-top: 20px;
             box-shadow: 0 0 10px #00ff00;
         }
+        .scrollable-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="container" id="quiz-container">
+    <div class="scrollable-container" id="quiz-container">
         <h2 id="question">Willkommen zum Geburtstagsquiz!</h2>
         <button onclick="nextQuestion(0)">Los geht's!</button>
     </div>
