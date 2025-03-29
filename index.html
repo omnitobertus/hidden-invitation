@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geburtstagsquiz</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 50px;
+            background-color: black;
+            color: #00ff00;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #003300;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+        button:hover {
+            background-color: #005500;
+        }
+        @keyframes matrix {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        h2, p, button, img {
+            animation: matrix 1s ease-in-out;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="quiz-container">
+        <h2 id="question">Willkommen zum Geburtstagsquiz!</h2>
+        <button onclick="nextQuestion(0)">Los geht's!</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Was ist die beste Kuchensorte?",
+                answers: ["Schokokuchen", "Käsekuchen", "Alles ist Kuchen"]
+            },
+            {
+                question: "Welches Tier wäre der beste Partygast?",
+                answers: ["Ein tanzender Pinguin", "Eine singende Katze", "Ein jonglierender Affe"]
+            },
+            {
+                question: "Was ist das beste Partygetränk?",
+                answers: ["Zauberlimonade", "Glitzerwasser", "Schokoshake"]
+            }
+        ];
+
+        let currentQuestion = -1;
+
+        function nextQuestion(choice) {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                document.getElementById("quiz-container").innerHTML = `
+                    <h2>${questions[currentQuestion].question}</h2>
+                    ${questions[currentQuestion].answers.map((answer, index) => 
+                        `<button onclick='nextQuestion(${index})'>${answer}</button>`
+                    ).join('')}
+                `;
+            } else {
+                showInvitation();
+            }
+        }
+
+        function showInvitation() {
+            document.getElementById("quiz-container").innerHTML = `
+                <h2>Glückwunsch, du hast das Quiz bestanden!</h2>
+                <p>Hiermit bist du offiziell zu meiner Geburtstagsparty eingeladen!</p>
+                <p><strong>Wann:</strong> Samstag, 20. April, 18:00 Uhr</p>
+                <p><strong>Wo:</strong> Bei mir zuhause – Adresse auf Anfrage!</p>
+                <p>Ich freue mich auf dich! 🎉</p>
+                <img src="./futuristic-motto.webp" alt="Futuristische Party Szene">
+            `;
+        }
+    </script>
+</body>
+</html>
